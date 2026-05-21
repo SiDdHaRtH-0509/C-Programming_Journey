@@ -82,3 +82,4 @@ This repository serves as:
 - A structured archive of my C learning progress
 - A foundation for advancing toward intermediate and system-level programming
 - A disciplined Git version-controlled record of technical growth
+---
