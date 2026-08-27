@@ -2,58 +2,63 @@
 using namespace std;
 int main()
 {
-    int marks1, marks2, marks3, marks4, marks5;
-    int student, roll;
-    int failcount=0, passcount=0;
+    int marks[5], roll;
+    string student;
     cout<<"Enter the student name: ";
     cin>>student;
     cout<<"Enter the student roll.no: ";
     cin>>roll;
     cout<<"Enter the marks of the student: "<<endl;
-    cout<<"Subject 1 marks: "<<endl;
-    cin>>marks1;
-    cout<<"Subject 2 marks: "<<endl;
-    cin>>marks2;
-    cout<<"Subject 3 marks: "<<endl;
-    cin>>marks3;
-    cout<<"Subject 4 marks: "<<endl;
-    cin>>marks4;
-    cout<<"Subject 5 marks: "<<endl;
-    cin>>marks5;
-
-    if (marks1<=0 || marks1>=100 ||marks2<=0 || marks2>=100 ||marks3<=0 || marks3>=100 ||marks4<=0 || marks4>=100 || marks5<=0 || marks5>=100) 
-    {
-        cout<<"Invalid marks! Marks must be between 0 and 100.\n";
+    for(int i=0; i<5; i++) {
+        cout<<"Marks of "<<i+1<<" Subject is: ";
+        cin>>marks[i];
     }
-
-    while(marks1<0 || marks1>100 ||
-         marks2<0 || marks2>100 ||
-         marks3<0 || marks3>100 ||
-        marks4<0 || marks4>100 ||
-        marks5<0 || marks5>100);
     
+    bool invalid= false;
+    for(int i=0; i<5; i++) {
+        if(marks[i]<0 || marks[i]>100){
+            invalid = true;
+        }
+    }
+    
+    if(invalid) {
+        cout<<"Invaild marks, Marks must be between 0 and 100.\n";
+    }
+    else {
+
     // Marks Calculation system //
-    int Total;
-    Total = marks1 + marks2 + marks3 + marks4 + marks5;
+    int Total=0;
+    for(int i=0; i<5; i++){
+        Total = Total + marks[i];
+    }
     double Percentage = Total / 5.0;
 
-    bool isFail=(marks1<33 || marks2<33 || marks3<33 || marks4<33 || marks5<33);
+    bool isFail = false;
+    for(int i=0; i<5; i++){
+        if(marks[i]<33){
+            isFail=true;
+        }
+    }
+
     // Grade system //
     char Grade;
 
-    if(Percentage>=90)
+    if(isFail){
+        Grade = 'F';
+    }
+    else if(Percentage>=90)
     {
         Grade = 'A';
     }
-    else if( Percentage>=80 && Percentage<90)
+    else if( Percentage>=80)
     {
     Grade = 'B';
     }
-    else if( Percentage>=65 && Percentage<80)
+    else if( Percentage>=65)
     {
         Grade = 'C';
     }
-    else if(Percentage>=45 && Percentage<65)
+    else if(Percentage>=45)
     {
         Grade = 'D';
     }
@@ -63,18 +68,19 @@ int main()
     }
     switch(Grade)
     {
-        case 'A': cout<<"Grade A";break;
-        case 'B': cout<<"Grade B";break;
-        case 'C': cout<<"Grade C";break;
-        case 'D':cout<<"Grade D";break;
-        default : cout<<"Fail";
+        case 'A': cout<<"Grade A\n";break;
+        case 'B': cout<<"Grade B\n";break;
+        case 'C': cout<<"Grade C\n";break;
+        case 'D':cout<<"Grade D\n";break;
+        default : cout<<"Fail\n";
     }
  
     // Display 
     cout<<"Report Card \n";
-    cout<<"Name of the student: "<<student;
-    cout<<"Roll no. :"<<roll;
-    cout<<"Total: "<<Total;
-    cout<<"Percentage: "<<Percentage;
-    cout<<"Grade - "<<Grade;
-}  
+    cout<<"Name of the student: "<<student<<"\n";
+    cout<<"Roll no. :"<<roll<<"\n";
+    cout<<"Total: "<<Total<<"\n";
+    cout<<"Percentage: "<<Percentage<<"\n";
+    cout<<"Grade - "<<Grade<<"\n";
+    }  
+}
